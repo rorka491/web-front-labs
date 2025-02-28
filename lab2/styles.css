@@ -25,3 +25,20 @@ table thead tr {
 table {
     width: 100%;
 }
+
+span {
+    background-color: darkred;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.new-sup {
+    background-color: yellow;
+    color: red;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+
+
