@@ -1,0 +1,35 @@
+p {
+    text-align: justify;
+    text-indent: 10px;
+    font-size: 20px;
+}
+
+p h1 h2 {
+    line-height: 1.5;
+}
+
+h1 h2 {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 40px;
+}
+
+h2 {
+    margin-top: 10;
+    margin-bottom: 5x;
+    margin-left: 20;
+    margin-right: 20;
+    font-size: 40px;
+}
+
+
+
+
+
+
