@@ -6,7 +6,17 @@ body {
     font-family: Arial;
 }
 
+header {
+    background-color: black;
+    padding: 20px;
+    color: lightgreen;
+}
 
+footer {
+    font-style: italic;
+    height: 60px;
+    border-top: 2px solid black;
+}
 
 
 
