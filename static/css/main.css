@@ -11,12 +11,37 @@ header {
     padding: 20px;
     color: lightgreen;
 }
+main {
+    margin: 10px 20px 45px;
+}
 
 footer {
     font-style: italic;
     height: 60px;
     border-top: 2px solid black;
+    position: fixed;
+    width: 100%;
+    margin-top: 20px;
+    bottom: 0;
+    right: 0;
+    background-color: #000;
 }
+
+div.menu {
+    border: 7px solid #046d10;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+div.menu:hover {
+    background-color: rgb(212, 254, 254);
+    box-shadow: 0 0 15px #000;
+}
+
+
+
+
 
 
 

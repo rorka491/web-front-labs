@@ -1,0 +1,40 @@
+.citation {
+    border: 1px solid red;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px #0002;
+    background: linear-gradient(to right, gold, green, blue);
+}
+
+.text {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.author {
+    text-align: left;
+    font-size: 30px;
+    opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+}
+
+a {
+    color: green; 
+    text-decoration: none;
+    transition: 1s 2s;
+}
+    
+a:hover {
+    color: red;
+    text-decoration: underline;
+    transition: 1s;
+}
+
+a:active {
+    color: black;
+    opacity: 0.3;
+}
+
