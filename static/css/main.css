@@ -10,9 +10,17 @@ header {
     background-color: black;
     padding: 20px;
     color: lightgreen;
+    top: 0;
+    width: 100%;
+
 }
 main {
     margin: 10px 20px 45px;
+    display: flex;
+}
+
+.contetnt {
+    flex: 1;
 }
 
 footer {
@@ -24,7 +32,8 @@ footer {
     margin-top: 20px;
     bottom: 0;
     right: 0;
-    background-color: #000;
+    background-color: #ffffff;
+    color: #000;
 }
 
 div.menu {

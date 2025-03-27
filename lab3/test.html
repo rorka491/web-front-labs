@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Плавный переход раскрытия блока</title>
+  <style>
+    .block {
+      overflow: hidden;
+      max-height: 0; /* свернутое состояние */
+      transition: max-height 0.5s ease;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 0 10px;
+    }
+    .block.expanded {
+      max-height: 500px; /* раскрытое состояние; подберите значение, достаточное для содержимого */
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="toggleBlock()">Переключить состояние</button>
+  <div id="myBlock" class="block">
+    <p>Это содержимое блока. Здесь может быть любой текст.</p>
+    <p>Еще один параграф для примера.</p>
+  </div>
+
+  <script>
+    function toggleBlock() {
+      var block = document.getElementById('myBlock');
+      block.classList.toggle('expanded');
+    }
+  </script>
+</body>
+</html>
