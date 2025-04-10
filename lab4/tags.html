@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Грязное облако тегов</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      overflow: hidden;
+      font-family: monospace;
+      position: relative;
+    }
+
+    .tag {
+      position: absolute;
+      padding: 3px 8px;
+      border-radius: 12px;
+      color: #fff;
+      font-weight: bold;        
+      pointer-events: none;
+      opacity: 0.75;
+      transform: rotate(var(--angle)) scale(var(--scale));
+    }
+
+    .tag:hover {
+      opacity: 1;
+      filter: none;
+      z-index: 10;
+    }
+
+    .t1  { top: 20px; left: 60px;   background: #4caf50;  font-size: 24px; --angle: 17deg;  --scale: 1.2; --blur: 0px; }
+    .t2  { top: 180px; left: 120px; background: #e91e63;  font-size: 12px; --angle: -37deg; --scale: 0.9; --blur: 1px; }
+    .t3  { top: 330px; left: 20px;  background: #ff9800;  font-size: 18px; --angle: 5deg;   --scale: 1.5; --blur: 2px; }
+    .t4  { top: 90px; left: 400px;  background: #03a9f4;  font-size: 30px; --angle: -25deg; --scale: 0.7; --blur: 1px; }
+    .t5  { top: 400px; left: 280px; background: #9c27b0;  font-size: 10px; --angle: 45deg;  --scale: 1.8; --blur: 0.5px; }
+    .t6  { top: 250px; left: 680px; background: #f44336;  font-size: 20px; --angle: -10deg; --scale: 1;   --blur: 0px; }
+    .t7  { top: 50px; left: 800px;  background: #00bcd4;  font-size: 16px; --angle: -60deg; --scale: 0.6; --blur: 2px; }
+    .t8  { top: 480px; left: 100px; background: #ffc107;  font-size: 22px; --angle: 30deg;  --scale: 1.1; --blur: 1px; }
+    .t9  { top: 300px; left: 600px; background: #8bc34a;  font-size: 14px; --angle: -15deg; --scale: 0.8; --blur: 1.5px; }
+    .t10 { top: 160px; left: 500px; background: #607d8b;  font-size: 28px; --angle: 70deg;  --scale: 0.9; --blur: 0px; }
+    .t11 { top: 370px; left: 700px; background: #795548;  font-size: 15px; --angle: -5deg;  --scale: 1.3; --blur: 1px; }
+    .t12 { top: 100px; left: 900px; background: #ff5722;  font-size: 19px; --angle: 50deg;  --scale: 0.95; --blur: 0px; }
+    .t13 { top: 440px; left: 820px; background: #cddc39;  font-size: 26px; --angle: -45deg; --scale: 1; --blur: 0.5px; }
+    .t14 { top: 220px; left: 30px;  background: #3f51b5;  font-size: 17px; --angle: 60deg;  --scale: 0.75; --blur: 1.5px; }
+    .t15 { top: 60px;  left: 250px; background: #9e9e9e;  font-size: 21px; --angle: -20deg; --scale: 1.4; --blur: 1px; }
+    .t16 { top: 500px; left: 400px; background: #00e676;  font-size: 13px; --angle: 10deg;  --scale: 0.85; --blur: 2px; }
+  </style>
+</head>
+<body>
+
+  <div class="tag t1">Python</div>
+  <div class="tag t2">Django</div>
+  <div class="tag t3">Flask</div>
+  <div class="tag t4">NumPy</div>
+  <div class="tag t5">Pandas</div>
+  <div class="tag t6">FastAPI</div>
+  <div class="tag t7">SQLAlchemy</div>
+  <div class="tag t8">Tkinter</div>
+  <div class="tag t9">asyncio</div>
+  <div class="tag t10">OOP</div>
+  <div class="tag t11">Machine Learning</div>
+  <div class="tag t12">Jupyter</div>
+  <div class="tag t13">Requests</div>
+  <div class="tag t14">Regex</div>
+  <div class="tag t15">Pygame</div>
+  <div class="tag t16">Typing</div>
+
+</body>
+</html>
