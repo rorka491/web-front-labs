@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Кружки</title>
+        <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+        <link rel="stylesheet" href="../static/css/main.css">
+    </head>
+    <style>
+        #block {
+            height: 200px;
+            width: 200px;
+            background-color: darkgreen;
+            cursor: crosshair;
+            text-align: center;
+        }
+    </style>
+
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+
+        <main>
+            <div id="block" onmousemove="showCoords()"></div>
+        </main>
+
+        <footer>
+            &copy Родион Горшков, ФБИ-31, 2 курс, 2025
+        </footer>
+
+        <script>
+            function showCoords() {
+            let x = event.offsetX;
+            let y = event.offsetY;
+            let div = document.getElementById('block');
+
+            if (event.ctrlKey) {
+                div.style.color = 'red';
+                div.innerHTML = 'Нажата клавиша Ctrl<br>';
+            } else if (event.shiftKey) {
+                div.style.color = 'aqua';
+                div.style.backgroundColor = 'black';
+                div.style.borderRadius = '20px';
+                div.innerHTML = 'Нажата клавиша Shift<br>';
+            } else if (event.altKey) {
+                div.style.color = 'lime';
+                div.style.backgroundColor = 'darkblue';
+                div.style.borderRadius = '10px';
+                div.style.boxShadow = '5px 5px 15px rgba(0, 255, 0, 0.6)'; // тень
+                div.innerHTML = 'Нажата клавиша Alt<br>';
+            } else {
+                div.style.color = 'white';
+                div.innerHTML = '';
+                div.style.borderRadius = '0px';
+                div.style.backgroundColor = 'darkgreen';
+                div.style.boxShadow = 'none';
+            }
+
+            div.innerHTML += '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px';
+        }
+        </script>
+    </body>
+</html>
