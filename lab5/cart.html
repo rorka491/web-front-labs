@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина товаров</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        body {
+          font-family: sans-serif;
+          background-color: #eee;
+          padding: 30px;
+        }
+        .cart {
+          background-color: lightblue;
+          padding: 20px;
+          width: 250px;
+          border: 1px solid #333;
+          border-radius: 5px;
+        }
+        .cart h2 {
+          color: darkred;
+          text-align: center;
+        }
+        .cart label {
+          display: block;
+          margin-top: 10px;
+        }
+        .cart input[type="number"], .cart button {
+          width: 100%;
+          padding: 5px;
+          margin-top: 5px;
+        }
+        #result {
+          margin-top: 15px;
+          font-weight: bold;
+          text-align: center;
+        }
+      </style>
+</head>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+    
+    <main>
+        <div class="cart">
+            <h2>Корзина товаров</h2>
+        
+            <label>Яблоки (100р/шт):
+              <input type="number" id="apples" value="3" min="0" placeholder="сколько надо яблок">
+            </label>
+        
+            <label>Груши (80р/шт):
+              <input type="number" id="pears" value="8" min="0" placeholder="сколько надо груш">
+            </label>
+        
+            <label>Апельсины (150р/шт):
+              <input type="number" id="oranges" value="4" min="0" placeholder="сколько надо апельсинов">
+            </label>
+        
+            <label>Дыни (300р/шт):
+              <input type="number" id="melons" value="1" min="0" placeholder="сколько надо дынь">
+            </label>
+        
+            <button onclick="calculate()">Рассчитать</button>
+        
+            <div id="result">Общая цена: 0 р</div>
+          </div>
+    </main>
+
+    <footer>
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+
+  <script>
+    function calculate() {
+      const apples = +document.getElementById("apples").value;
+      const pears = +document.getElementById("pears").value;
+      const oranges = +document.getElementById("oranges").value;
+      const melons = +document.getElementById("melons").value;
+
+      const total =
+        apples * 100 +
+        pears * 80 +
+        oranges * 150 +
+        melons * 300;
+
+      document.getElementById("result").innerHTML = `Общая цена: ${total} р`;
+    }
+  </script>
+</body>
+</html>
+

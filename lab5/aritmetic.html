@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горшков Родион Станиславович Лабораторная работа 5</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        .message {
+            cursor: pointer;
+            display: inline-block;
+            border: solid 2px;
+            background-color: aquamarine;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <input type="number" id="NumberA"><br>
+        <input type="number" id="NumberB"><br>
+        <div class="content">
+            <div class="message" onclick="showSum()">деление</div>
+            <div class="message" onclick="showWhoIshak()">узнать кто страницы</div>
+            <div id="output">
+                <input type="button" value="кнопка 1" onclick="changeOutput(1, 'red', 'yellow')">
+                <input type="button" value="кнопка 2" onclick="changeOutput(2, 'green', 'black')">
+                <input type="button" value="кнопка 3" onclick="changeOutput(3, 'orange', 'blue')">
+                <input type="button" value="кнопка 4" onclick="changeOutput(4, 'purple', 'red')">
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+    <script>
+        function showSum() {
+            let inputa = document.getElementById('NumberA')
+            let inputb = document.getElementById('NumberB')
+
+            let a = parseInt(inputa.value)
+            let b = parseInt(inputb.value)
+
+            if (b == 0) {
+                alert('на ноль делить нельзя');
+                inputb.focus();
+                inputb.select();
+                inputb.style.color = 'red'
+                inputb.style.borderColor = 'red';
+                return;
+            }
+
+            inputb.style.color = '';
+            inputb.style.borderColor = '';
+
+            if(isNaN(a)) {
+                alert('Введите числовое значение в перовое поле')
+                return
+            }
+
+
+            let result = a / b
+            alert(`${a} / ${b} = ${result}`)
+        }
+
+        function showWhoIshak() {
+            alert('Родион Горшков')
+        }
+        
+
+        function changeOutput(buttonNum, backColor, textColor) {
+            let output = document.getElementById('output');
+            output.innerHTML = `Нажата кнопка ${buttonNum}`;
+            output.style.backgroundColor = backColor;
+            output.style.color = textColor;
+            
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

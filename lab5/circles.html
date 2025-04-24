@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кружки</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #eef;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .circle:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'brown', 'teal', 'gray'];
+
+    for (let i = 0; i < 10; i++) {
+      const circle = document.createElement('div');
+      circle.className = 'circle';
+      circle.style.backgroundColor = colors[i % colors.length];
+      circle.textContent = i + 1;
+
+      // случайная позиция по ширине и высоте окна
+      const x = Math.random() * (window.innerWidth - 60);
+      const y = Math.random() * (window.innerHeight - 60);
+      circle.style.left = `${x}px`;
+      circle.style.top = `${y}px`;
+
+      // скрыть при клике
+      circle.onclick = () => circle.style.display = 'none';
+
+      document.body.appendChild(circle);
+    }
+  </script>
+
+</body>
+</html>
