@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горшков Родион Станиславович Лабораторная работа 6</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            height: 300px;
+            width: 100%;
+            gap: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        
+        .bar {
+            flex: 1;
+            background-color: #1673ad;
+            transition: height 0.5s ease;
+            position: relative;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            color: #333;
+        }
+        
+        .bar:hover {
+            background-color: #062a74;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <div class="chart-container" id="diag">
+            <div class="bar" style="height: 20%;" data-value="20%"></div>
+            <div class="bar" style="height: 40%;" data-value="40%"></div>
+            <div class="bar" style="height: 60%;" data-value="60%"></div>
+            <div class="bar" style="height: 80%;" data-value="80%"></div>
+            <div class="bar" style="height: 100%;" data-value="100%"></div>
+            <div class="bar" style="height: 70%;" data-value="70%"></div>
+            <div class="bar" style="height: 50%;" data-value="50%"></div>
+            <div class="bar" style="height: 30%;" data-value="30%"></div>
+            <div class="bar" style="height: 10%;" data-value="10%"></div>
+            <div class="bar" style="height: 5%;" data-value="5%"></div>
+        </div>
+    </main>
+
+    <footer ondblclick="">
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+    <script>
+        let data = [34, 32, 53, 45, 85, 32, 75, 23, 1, 40, 43, 84]
+        const maxData = Math.max(...data)
+        const diagWidth = document.getElementById('diag').clientHeight
+        const colors = ['#1b6669', '#392abf', '#19e6c0', '#9ab03a', '#9ab03a', '#140836', '#f20a19', '#c4688d', '#c3e0dd', '#82a882', '#5e6e8a', '#481d5e']
+        const k = diagWidth / maxData * 0.9 
+        const bars = document.getElementsByClassName('bar');
+        
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.height = k*data[i] + 'px';
+            bars[i].style.backgroundColor = colors[i];
+            bars[i].setAttribute('data-value', data[i] + 'px');
+        }
+        
+        try {
+            console.log("Попытка обратиться к i вне цикла:", i);
+        } catch (e) {
+            console.log("Ошибка при обращении к i вне цикла:", e.message);
+        }
+    </script>
+</body>
+</html>

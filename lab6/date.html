@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Текущая дата</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        
+        .date-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .current-date {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        
+        .locale-date {
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        
+        .locale-name {
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="page-header">
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <div class="content">
+            <div class="date-container">
+                <h1>Текущая дата и время</h1>
+                <div id="current-date" class="current-date"></div>
+                
+                <h2>Дата в разных локалях:</h2>
+                <div id="locale-dates"></div>
+                
+                <div class="controls">
+                    <button id="start-btn">Старт</button>
+                    <button id="stop-btn" disabled>Стоп</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+
+    <script>
+
+        function showDate() {
+            const out = document.getElementById('current-date');
+            const now = new Date();
+            
+            out.textContent = `Текущая дата: ${now.toLocaleString('ru-RU')}`;
+
+            const locales = [
+                {code: 'en-US', name: 'Американский английский'},
+                {code: 'de-DE', name: 'Немецкий (Германия)'},
+                {code: 'ja-JP', name: 'Японский'},
+                {code: 'ar-EG', name: 'Арабский (Египет)'},
+                {code: 'fr-FR', name: 'Французский'},
+                {code: 'zh-CN', name: 'Китайский (упрощенный)'}
+            ];
+            
+            const localeContainer = document.getElementById('locale-dates');
+            localeContainer.innerHTML = '';
+            
+            locales.forEach(locale => {
+                const dateDiv = document.createElement('div');
+                dateDiv.className = 'locale-date';
+                dateDiv.innerHTML = `
+                    <div class="locale-name">${locale.name} (${locale.code}):</div>
+                    <div>${now.toLocaleString(locale.code)}</div>
+                `;
+                localeContainer.appendChild(dateDiv);
+            });
+        }
+        
+        function changeHeaderColor() {
+            const header = document.getElementById('page-header'); //не возвращает коллекцию возвращает элемент
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            header.style.color = `rgb(${r}, ${g}, ${b})`;
+        }
+        
+        let colorInterval;
+        
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            colorInterval = setInterval(changeHeaderColor, 1000);
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('stop-btn').disabled = false;
+        });
+        
+        document.getElementById('stop-btn').addEventListener('click', () => {
+            clearInterval(colorInterval);
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('stop-btn').disabled = true;
+        });
+
+        window.onload = showDate;
+    </script>
+</body>
+</html>

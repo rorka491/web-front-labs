@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горшков Родион Станиславович Лабораторная работа 6</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        .controls {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .controls input {
+            padding: 8px;
+            margin: 0 10px;
+            width: 60px;
+        }
+        .controls button {
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <div class="content">
+            <div id="mtable"></div>
+            <div class="controls">
+                Умножить на: <input type="number" id="multiplier" value="7" min="1">
+                Начать с: <input type="number" id="start" value="1" min="1">
+                Закончить на: <input type="number" id="end" value="10" min="1">
+                <button onclick="generateTable()">Таблица</button>
+            </div>
+        </div>
+    </main>
+
+    <footer ondblclick="">
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+
+    <script>
+        function generateTable() {
+            let tbl = document.getElementById('mtable');
+            let multiplier = parseInt(document.getElementById('multiplier').value);
+            let start = parseInt(document.getElementById('start').value);
+            let end = parseInt(document.getElementById('end').value);
+
+            if (start > end) {
+                alert('"Начать с" должно быть меньше или равно "Закончить на"');
+                return;
+            }
+            
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+            for(let i = start; i <= end; i++) {
+                let s = '<div>' + i + ' × ' + multiplier + ' = ' + (i * multiplier) + '</div>';  
+                tbl.innerHTML += s;
+            }
+        }
+
+        window.onload = generateTable;
+    </script>
+</body>
+</html>

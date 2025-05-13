@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список книг</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .book-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .book-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .book-author {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .book-info {
+            margin-bottom: 8px;
+        }
+        
+        .book-price {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.1em;
+        }
+        
+        .bestseller {
+            background-color: #fffacd;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .out-of-stock {
+            opacity: 0.6;
+            position: relative;
+        }
+        
+        .out-of-stock::after {
+            content: "Нет в наличии";
+            display: block;
+            color: #e74c3c;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .book-tags {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .tag {
+            background-color: #e0e0e0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+        }
+        
+        .bestseller-tag {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <div class="content">
+            <h1>Список книг</h1>
+            <div id="booklist" class="book-list"></div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+
+    <script src="books.js"></script>
+
+
+
+    <script>
+
+        function showBooks() {
+            const booklist = document.getElementById('booklist');
+            
+            books.forEach(book => {
+                let bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                
+                if (book.bestseller) {
+                    bookCard.classList.add('bestseller');
+                }
+                if (!book.inStock) {
+                    bookCard.classList.add('out-of-stock');
+                }
+                
+                const formattedPrice = new Intl.NumberFormat('ru-RU', {
+                    style: 'currency',
+                    currency: 'RUB',
+                    minimumFractionDigits: 0
+                }).format(book.price);
+                
+                bookCard.innerHTML = `
+                    <div class="book-title">${book.title}</div>
+                    <div class="book-author">${book.author}</div>
+                    <div class="book-info">Год издания: ${book.publicationYear}</div>
+                    <div class="book-info">Издательство: ${book.publisher}</div>
+                    <div class="book-info">Страниц: ${book.pages}</div>
+                    <div class="book-price">${formattedPrice}</div>
+                    
+                    <div class="book-tags">
+                        ${book.bestseller ? '<span class="tag bestseller-tag">Бестселлер</span>' : ''}
+                        ${book.genre ? `<span class="tag">${book.genre}</span>` : ''}
+                    </div>
+                `;
+                
+                booklist.appendChild(bookCard);
+            });
+        }
+        
+        window.onload = showBooks;
+    </script>
+
+
+</body>
+</html>
+
+
+
+
