@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горшков Родион Станиславович Лабораторная работа 7</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script>
+        function showExchange() {
+            changes = [
+                3148, 3191, 3102, 3105, 3074, 3066, 3107, 3204, 3162, 3233
+            ]
+            dates = [
+                '13/05/2025',
+                '12/05/2025',
+                '08/05/2025', 
+                '07/05/2025', 
+                '06/05/2025', 
+                '05/05/2025', 
+                '02/05/2025', 
+                '30/04/2025',
+                '29/04/2025',
+                '28/04/2025',
+            ]
+            let table = document.getElementById('hh-table');
+
+
+            const fragment = document.createDocumentFragment();
+
+            for (let i = 0; i < changes.length; i++) {
+                const tr = document.createElement('tr');
+
+                tr.innerHTML = `
+                    <td>${dates[i]}</td>
+                    <td>${changes[i]}</td>
+                `;
+
+                fragment.appendChild(tr);
+            }
+
+            table.appendChild(fragment);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+
+    <main style="display: flex; flex-direction: column;">
+        
+        <button onclick="showExchange()" style="max-width: 100px;">Показать катировки hh
+        </button>
+        <table id="hh-table">
+            <tr>
+                <th>Катировки hh</th>
+            </tr>
+        </table>
+    </main>
+
+
+    <footer>
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+    
+</body>
+</html>

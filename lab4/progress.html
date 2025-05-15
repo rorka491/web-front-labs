@@ -2,57 +2,61 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>CSS-Прогресс по удержанию</title>
+  <title>Прогресс по удержанию</title>
   <style>
     body {
       display: flex;
-      height: 100vh;
       justify-content: center;
       align-items: center;
+      height: 100vh;
       background: #f0f0f0;
     }
 
-    .button {
-      position: relative;
+    .container {
       width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 15px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #3498db;
+      transition: width 2s linear;
+    }
+
+    .button {
       height: 50px;
-      border: none;
       background: #3498db;
       color: white;
       font-size: 18px;
+      border: none;
       border-radius: 8px;
-      overflow: hidden;
       cursor: pointer;
     }
 
-    .fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background: rgba(255, 255, 255, 0.3);
-      transition: width 2s linear;
-      z-index: 1;
-    }
-
-    .button:active .fill {
+    .container:has(.button:active) .progress-fill {
       width: 100%;
-    }
-
-    .button span {
-      position: relative;
-      z-index: 2;
-      pointer-events: none;
     }
   </style>
 </head>
 <body>
 
-  <button class="button">
-    <div class="fill"></div>
-    <span>Удерживай</span>
-  </button>
+  <div class="container">
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+    <button class="button">Удерживай</button>
+  </div>
 
 </body>
 </html>

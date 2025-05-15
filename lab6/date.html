@@ -138,9 +138,8 @@
             const b = Math.floor(Math.random() * 256);
             header.style.color = `rgb(${r}, ${g}, ${b})`;
         }
-        
+
         let colorInterval;
-        
 
         document.getElementById('start-btn').addEventListener('click', () => {
             colorInterval = setInterval(changeHeaderColor, 1000);

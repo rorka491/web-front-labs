@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горшков Родион Станиславович Лабораторная работа 7</title>
+    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script>
+        function addNewBlock() {
+            let newBlock = document.createElement('div')
+            newBlock.style.backgroundColor = 'green'
+            newBlock.style.height = '40px'
+            
+            document.querySelector('main').appendChild(newBlock)
+        }
+
+    </script>
+
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+
+    <main>
+        <button onclick="addNewBlock()">Добавить блок</button>
+    </main>
+
+
+    <footer>
+        &copy; Горшков Родион. 2 курс 2025
+    </footer>
+</body>
+</html>
