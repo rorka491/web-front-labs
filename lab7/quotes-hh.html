@@ -1,68 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Горшков Родион Станиславович Лабораторная работа 7</title>
     <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
     <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        tfoot td {
+            font-weight: bold;
+        }
+    </style>
     <script>
         function showExchange() {
-            changes = [
-                3148, 3191, 3102, 3105, 3074, 3066, 3107, 3204, 3162, 3233
-            ]
-            dates = [
+            const changes = [3148, 3191, 3102, 3105, 3074, 3066, 3107, 3204, 3162, 3233];
+            const dates = [
                 '13/05/2025',
                 '12/05/2025',
-                '08/05/2025', 
-                '07/05/2025', 
-                '06/05/2025', 
-                '05/05/2025', 
-                '02/05/2025', 
+                '08/05/2025',
+                '07/05/2025',
+                '06/05/2025',
+                '05/05/2025',
+                '02/05/2025',
                 '30/04/2025',
                 '29/04/2025',
-                '28/04/2025',
-            ]
+                '28/04/2025'
+            ];
+
             let table = document.getElementById('hh-table');
-
-
-            const fragment = document.createDocumentFragment();
+            let fragment = document.createDocumentFragment();
+            let maxValue = Math.max(...changes)
+            let minValue = Math.min(...changes)
+            let sum = 0;
 
             for (let i = 0; i < changes.length; i++) {
                 const tr = document.createElement('tr');
+                const value = changes[i];
+                const diff = i > 0 ? (value - changes[i - 1]) : '-';
 
                 tr.innerHTML = `
                     <td>${dates[i]}</td>
-                    <td>${changes[i]}</td>
+                    <td>${value}</td>
+                    <td>${typeof diff === 'number' ? (diff >= 0 ? '+' : '') + diff : '-'}</td>
                 `;
 
                 fragment.appendChild(tr);
+                sum += value;
             }
 
+            const average = (sum / changes.length).toFixed(2);
+            const avgRow = document.createElement('tr');
+            const maxRow = document.createElement('tr')
+            const minRow = document.createElement('tr')
+            avgRow.innerHTML = `
+                <td colspan="2">Среднее</td>
+                <td>${average}</td>
+            `;
+            maxRow.innerHTML = `
+                <td colspan="2">Максимальное</td>
+                <td>${maxValue}</td>
+            `
+            minRow.innerHTML = `
+                <td colspan="2">Максимальное</td>
+                <td>${minValue}</td>
+            `
+            avgRow.style.fontWeight = "bold";
+            maxRow.style.fontWeight = "bold";
+            minRow.style.fontWeight = "bold";
+
+            fragment.appendChild(avgRow);
+            fragment.appendChild(maxRow);
+            fragment.appendChild(minRow);
             table.appendChild(fragment);
         }
     </script>
 </head>
 <body>
     <header>
-        НГТУ, ФБ, Лабораторная работа 7
+        <a href="../index.html">НГТУ, ФБ, Лабораторная работа 7</a>
     </header>
 
-    <main style="display: flex; flex-direction: column;">
+    <main style="display: flex; flex-direction: column; align-items: start;">
+        <button onclick="showExchange()">Показать котировки hh</button>
         
-        <button onclick="showExchange()" style="max-width: 100px;">Показать катировки hh
-        </button>
         <table id="hh-table">
             <tr>
-                <th>Катировки hh</th>
+                <th>Дата</th>
+                <th>Значение</th>
+                <th>Разница</th>
             </tr>
         </table>
     </main>
 
-
     <footer>
         &copy; Горшков Родион. 2 курс 2025
     </footer>
-    
 </body>
 </html>
