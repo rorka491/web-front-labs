@@ -66,6 +66,7 @@
             </label>
         
             <button onclick="calculate()">Рассчитать</button>
+            <button onclick="clearAll()">Очистить</button>
         
             <div id="result">Общая цена: 0 р</div>
           </div>
@@ -89,6 +90,13 @@
         melons * 300;
 
       document.getElementById("result").innerHTML = `Общая цена: ${total} р`;
+    }
+    function clearAll() {
+      document.getElementById('apples').value = '';
+      document.getElementById('pears').value = '';
+      document.getElementById('oranges').value = '';
+      document.getElementById('melons').value = '';
+      document.getElementById('result').innerHTML = 'Общая цена: 0 р';
     }
   </script>
 </body>

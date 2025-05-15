@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кружки</title>
-    <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
-    <link rel="stylesheet" href="../static/css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кружки</title>
+  <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
+  <link rel="stylesheet" href="../static/css/main.css">
   <style>
     body {
       margin: 0;
@@ -33,12 +33,25 @@
     .circle:hover {
       transform: scale(1.1);
     }
+
+    .restore-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
+  <button class="restore-btn" onclick="restoreCircles()">Восстановить круги</button>
+
   <script>
     const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'brown', 'teal', 'gray'];
+    const circles = [];
 
     for (let i = 0; i < 10; i++) {
       const circle = document.createElement('div');
@@ -46,16 +59,19 @@
       circle.style.backgroundColor = colors[i % colors.length];
       circle.textContent = i + 1;
 
-      // случайная позиция по ширине и высоте окна
       const x = Math.random() * (window.innerWidth - 60);
       const y = Math.random() * (window.innerHeight - 60);
       circle.style.left = `${x}px`;
       circle.style.top = `${y}px`;
 
-      // скрыть при клике
       circle.onclick = () => circle.style.display = 'none';
 
       document.body.appendChild(circle);
+      circles.push(circle);
+    }
+
+    function restoreCircles() {
+      circles.forEach(c => c.style.display = 'flex');
     }
   </script>
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="shortcut icon" href="../static/images/favicon-32x32.png">
-<link rel="stylesheet" href="../static/css/main.css">
-<title>Регулятор блюра</title>
+<link rel="shortcut icon" href="../static/images/favicon-32x32.png" />
+<link rel="stylesheet" href="../static/css/main.css" />
+<title>Регулятор фильтров</title>
 <style>
-body {
+  body {
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
@@ -17,63 +17,120 @@ body {
     height: 100vh;
     margin: 0;
     background: #f0f0f0;
-}
+  }
 
-.image-container {
-    filter: blur(0px);
+  .image-container {
+    filter: blur(0px) brightness(1) contrast(1) saturate(1);
     transition: filter 0.2s;
     margin-top: 40px;
-}
+  }
 
-img {
+  img {
     width: 400px;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
+  }
 
-.controls {
+  .controls {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     padding: 20px;
-}
+  }
 
-input[type="range"] {
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  input[type="range"] {
     width: 200px;
-}
+  }
 
-.indicator {
-    font-size: 24px;
+  .indicator {
+    width: 40px;
+    font-size: 18px;
     font-weight: bold;
-}
+    text-align: right;
+  }
+
+  label {
+    min-width: 80px;
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
 
-
   <div class="image-container" id="imgContainer">
-    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Горы">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Горы" />
   </div>
 
-<div class="controls">
-    <input type="range" min="0" max="10" value="0" step="1" id="blurSlider">
-    <div class="indicator" id="indicator">x0</div>
-</div>
+  <div class="controls">
+    <div class="control-group">
+      <label for="blurSlider">Blur</label>
+      <input type="range" min="0" max="10" value="0" step="1" id="blurSlider" />
+      <div class="indicator" id="blurIndicator">0px</div>
+    </div>
 
+    <div class="control-group">
+      <label for="brightnessSlider">Brightness</label>
+      <input type="range" min="0.1" max="3" value="1" step="0.1" id="brightnessSlider" />
+      <div class="indicator" id="brightnessIndicator">1.0</div>
+    </div>
 
+    <div class="control-group">
+      <label for="contrastSlider">Contrast</label>
+      <input type="range" min="0.1" max="3" value="1" step="0.1" id="contrastSlider" />
+      <div class="indicator" id="contrastIndicator">1.0</div>
+    </div>
+
+    <div class="control-group">
+      <label for="saturateSlider">Saturation</label>
+      <input type="range" min="0" max="3" value="1" step="0.1" id="saturateSlider" />
+      <div class="indicator" id="saturateIndicator">1.0</div>
+    </div>
+  </div>
 
   <script>
-    const slider = document.getElementById('blurSlider');
-    const indicator = document.getElementById('indicator');
     const imageContainer = document.getElementById('imgContainer');
 
-    slider.oninput = () => {
-      const blurValue = slider.value;
-      imageContainer.style.filter = `blur(${blurValue}px)`;
-      indicator.textContent = `x${blurValue}`;
-    };
+    const blurSlider = document.getElementById('blurSlider');
+    const brightnessSlider = document.getElementById('brightnessSlider');
+    const contrastSlider = document.getElementById('contrastSlider');
+    const saturateSlider = document.getElementById('saturateSlider');
+
+    const blurIndicator = document.getElementById('blurIndicator');
+    const brightnessIndicator = document.getElementById('brightnessIndicator');
+    const contrastIndicator = document.getElementById('contrastIndicator');
+    const saturateIndicator = document.getElementById('saturateIndicator');
+
+    function updateFilters() {
+      const blurValue = blurSlider.value;
+      const brightnessValue = brightnessSlider.value;
+      const contrastValue = contrastSlider.value;
+      const saturateValue = saturateSlider.value;
+
+      imageContainer.style.filter = `
+        blur(${blurValue}px)
+        brightness(${brightnessValue})
+        contrast(${contrastValue})
+        saturate(${saturateValue})
+      `;
+
+      blurIndicator.textContent = `${blurValue}px`;
+      brightnessIndicator.textContent = brightnessValue;
+      contrastIndicator.textContent = contrastValue;
+      saturateIndicator.textContent = saturateValue;
+    }
+
+    blurSlider.oninput = updateFilters;
+    brightnessSlider.oninput = updateFilters;
+    contrastSlider.oninput = updateFilters;
+    saturateSlider.oninput = updateFilters;
   </script>
 
 </body>

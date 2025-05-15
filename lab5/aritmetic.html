@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Горшков Родион Станиславович Лабораторная работа 5</title>
+    <title>Горшков Родион Станиславович — Лабораторная работа 5</title>
     <link rel="shortcut icon" href="../static/images/favicon-32x32.png">
     <link rel="stylesheet" href="../static/css/main.css">
     <style>
@@ -12,21 +12,26 @@
             display: inline-block;
             border: solid 2px;
             background-color: aquamarine;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
-
     </style>
 </head>
 <body>
-    <header>
+    <header onclick="handleHeaderClick()">
         НГТУ, ФБ, Лабораторная работа 5
     </header>
 
     <main>
-        <input type="number" id="NumberA"><br>
-        <input type="number" id="NumberB"><br>
+        <input type="number" id="NumberA" placeholder="Число A"><br>
+        <input type="number" id="NumberB" placeholder="Число B"><br>
         <div class="content">
-            <div class="message" onclick="showSum()">деление</div>
-            <div class="message" onclick="showWhoIshak()">узнать кто страницы</div>
+            <div class="message" onclick="calculate('add')">Сложение</div>
+            <div class="message" onclick="calculate('sub')">Вычитание</div>
+            <div class="message" onclick="calculate('mul')">Умножение</div>
+            <div class="message" onclick="calculate('div')">Деление</div>
+            <div class="message" onclick="showWhoIshak()">Узнать кто автор страницы</div>
             <div id="output">
                 <input type="button" value="кнопка 1" onclick="changeOutput(1, 'red', 'yellow')">
                 <input type="button" value="кнопка 2" onclick="changeOutput(2, 'green', 'black')">
@@ -36,58 +41,76 @@
         </div>
     </main>
 
-
-    <footer>
+    <footer onclick="handleFooterClick()">
         &copy; Горшков Родион. 2 курс 2025
     </footer>
+
     <script>
-        function showSum() {
-            let inputa = document.getElementById('NumberA')
-            let inputb = document.getElementById('NumberB')
+        function calculate(operation) {
+            let inputA = document.getElementById('NumberA');
+            let inputB = document.getElementById('NumberB');
 
-            let a = parseInt(inputa.value)
-            let b = parseInt(inputb.value)
+            let a = parseFloat(inputA.value);
+            let b = parseFloat(inputB.value);
 
-            if (b == 0) {
-                alert('на ноль делить нельзя');
-                inputb.focus();
-                inputb.select();
-                inputb.style.color = 'red'
-                inputb.style.borderColor = 'red';
+            if (isNaN(a) || isNaN(b)) {
+                alert('Введите корректные числа в оба поля');
                 return;
             }
 
-            inputb.style.color = '';
-            inputb.style.borderColor = '';
+            let result;
+            let symbol;
 
-            if(isNaN(a)) {
-                alert('Введите числовое значение в перовое поле')
-                return
+            switch (operation) {
+                case 'add':
+                    result = a + b;
+                    symbol = '+';
+                    break;
+                case 'sub':
+                    result = a - b;
+                    symbol = '-';
+                    break;
+                case 'mul':
+                    result = a * b;
+                    symbol = '*';
+                    break;
+                case 'div':
+                    if (b === 0) {
+                        alert('На ноль делить нельзя!');
+                        inputB.focus();
+                        inputB.style.borderColor = 'red';
+                        return;
+                    }
+                    result = a / b;
+                    symbol = '/';
+                    break;
             }
 
-
-            let result = a / b
-            alert(`${a} / ${b} = ${result}`)
+            inputB.style.borderColor = '';
+            alert(`${a} ${symbol} ${b} = ${result}`);
         }
 
         function showWhoIshak() {
-            alert('Родион Горшков')
+            alert('Родион Горшков');
         }
-        
 
         function changeOutput(buttonNum, backColor, textColor) {
             let output = document.getElementById('output');
             output.innerHTML = `Нажата кнопка ${buttonNum}`;
             output.style.backgroundColor = backColor;
             output.style.color = textColor;
-            
         }
+        
+            function handleHeaderClick() {
+                alert('Клик по шапке!');
+            }
+
+            function handleFooterClick() {
+                alert('Клик по подвалу!');
+            }
     </script>
 </body>
 </html>
-
-
-
 
 
 
