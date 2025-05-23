@@ -44,6 +44,7 @@
         tfoot td {
             font-weight: bold;
         }
+
     </style>
     <script>
         function showExchange() {
@@ -75,7 +76,7 @@
                 tr.innerHTML = `
                     <td>${dates[i]}</td>
                     <td>${value}</td>
-                    <td>${typeof diff === 'number' ? (diff >= 0 ? '+' : '') + diff : '-'}</td>
+                    <td>${diff}</td>
                 `;
 
                 fragment.appendChild(tr);
