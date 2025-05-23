@@ -29,23 +29,14 @@
             <div>Имя: {{ user.name }}</div>
             <div>Возраст: {{ user.age }} </div>
             <div>Телефон: {{ user.tel }}</div>
+            <hr>
             <h2>Цветы</h2>
-            <table class="table-danger">
-                <thead>
-                    <tr>
-                        <th>название</th>
-                        <th>редактировать</th>
-                    </tr>
-                </thead>
-                <tr v-for="(flower, id) in flowers">
-                    <td>
-                        {{flower}}
-                    </td>
-                    <td>
-                        <button @click="edit(id, flower)">?</button>
-                    </td>
-                </tr>
-            </table>
+            <ul class="list-group">
+                <li v-for="(flower, id) in flowers" class="list-group-item">
+                    {{flower}} <button @click="(id, flower)">?</button>
+                </li>
+            </ul>
+            <hr>
             <h2>Calc</h2>
             <div class="row g-5">
                 <div class="col-auto">
