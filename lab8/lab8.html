@@ -23,10 +23,17 @@
             </p>
             <button @click="incCounter" v-if="counter < 10">++</button>
             <button @click="decCounter">--</button>
+            <button @click="resetCounter">обнулить</button>
             <h2>Пользователь:</h2>
             <div>Имя: {{ user.name }}</div>
             <div>Возраст: {{ user.age }} </div>
             <div>Телефон: {{ user.tel }}</div>
+            <h2>Цветы</h2>
+            <ul>
+                <li v-for="(flower, id) in flowers">
+                    {{ flower }} <button @click="edit(id, flower)">?</button>
+                </li>
+            </ul>
         </div>
     </main>
 
@@ -46,7 +53,8 @@
                         name: 'Vasya',
                         age: 18,
                         tel: '222-33-44'
-                    }
+                    },
+                    flowers: ['роза', 'тюльпан', 'маргаритка', 'георгин', 'одуванчик']
                 }
             },
             methods: {
@@ -56,6 +64,16 @@
                 decCounter() {
                     this.counter--
                 },
+                resetCounter() {
+                    this.counter = 0
+                },
+                edit(id, flower) {
+                    let newName = prompt('Введите название цветка', flower);
+                    this.flowers[id] = 'сохранение...';
+                    setTimeout(() => {
+                        this.flowers[id] = newName;
+                    }, 3000)
+                }
             }
         }).mount('#app');
     </script>
