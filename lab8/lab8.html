@@ -16,51 +16,76 @@
         НГТУ, ФБ, Лабораторная работа 8
     </header>
 
-    <main>
-        <div id="app">
-            <h1 :title="messageRus">
-                {{ message }}
-            </h1>
-            <p>
-                Счетчик: {{ counter }}
-            </p>
-            <button @click="incCounter" v-if="counter < 10">++</button>
-            <button @click="decCounter">--</button>
-            <button @click="resetCounter">обнулить</button>
-            <h2>Пользователь:</h2>
-            <div>Имя: {{ user.name }}</div>
-            <div>Возраст: {{ user.age }} </div>
-            <div>Телефон: {{ user.tel }}</div>
-            <hr>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h2 class="card-title">цветы</h2>
-                    <ul class="list-group">
-                        <li v-for="(flower, id) in flowers" class="list-group-item">
-                            {{flower}} <button @click="edit(id, flower)"><i class="bi bi-pencil"></i></button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <h2>Calc</h2>
-            <div class="row g-5">
-                <div class="col-auto">
-                    <input type="number" v-model="a" class="form-control">
-                </div>
-                <div class="col-auto">+</div>
-                <div class="col-auto">
-                    <input type="number" v-model="b" class="form-control">
-                </div>
-                <div class="col-auto">
-                    <button @click="sum" class="btn btn-primary">=</button>
-                </div>
-                <div class="col-auto">
-                    <span class="badge text-bd-primary fs-5">{{result}}</span>
-                </div>
+<main class="container py-4">
+    <div id="app">
+        <h1 :title="messageRus" class="mb-4 text-center">
+            {{ message }}
+        </h1>
+
+        <p class="fs-5">
+            Счётчик: <strong>{{ counter }}</strong>
+        </p>
+        <div class="mb-4">
+            <button @click="incCounter" class="btn btn-success me-2" v-if="counter < 10">++</button>
+            <button @click="decCounter" class="btn btn-warning me-2">--</button>
+            <button @click="resetCounter" class="btn btn-danger">Обнулить</button>
+        </div>
+
+        <h2 class="mt-4">Пользователь:</h2>
+        <ul class="list-group mb-4">
+            <li class="list-group-item">Имя: {{ user.name }}</li>
+            <li class="list-group-item">Возраст: {{ user.age }}</li>
+            <li class="list-group-item">Телефон: {{ user.tel }}</li>
+        </ul>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title mb-3">Цветы</h2>
+                <ul class="list-group mb-3">
+                    <li v-for="(flower, id) in flowers" class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <div v-if="flower === null" class="d-flex align-items-center">
+                                <div class="spinner-border spinner-border-sm text-secondary me-2" role="status"></div>
+                                Загрузка...
+                            </div>
+                            <span v-else>{{ flower }}</span>
+                        </div>
+                        <div>
+                            <button @click="edit(id, flower)" class="btn btn-outline-primary btn-sm me-2" v-if="flower !== null">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button @click="remove(id)" class="btn btn-outline-danger btn-sm" v-if="flower !== null">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <button @click="addFlower" class="btn btn-primary w-100">
+                    <i class="bi bi-plus-circle"></i> Добавить цветок
+                </button>
             </div>
         </div>
-    </main>
+
+        <h2 class="mb-3">Калькулятор</h2>
+        <div class="row g-3 align-items-center mb-5">
+            <div class="col-auto">
+                <input type="number" v-model="a" class="form-control">
+            </div>
+            <div class="col-auto fs-4">+</div>
+            <div class="col-auto">
+                <input type="number" v-model="b" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button @click="sum" class="btn btn-primary">=</button>
+            </div>
+            <div class="col-auto">
+                <span class="badge bg-secondary fs-5">{{ result }}</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+
 
 
     <footer>
@@ -87,24 +112,40 @@
             },
             methods: {
                 incCounter() {
-                    this.counter++
+                    this.counter++;
                 },
                 decCounter() {
-                    this.counter--
+                    this.counter--;
                 },
                 resetCounter() {
-                    this.counter = 0
+                    this.counter = 0;
                 },
                 edit(id, flower) {
-                    let newName = prompt('Введите название цветка', flower);
-                    this.flowers[id] = 'сохранение...';
-                    setTimeout(() => {
-                        this.flowers[id] = newName;
-                    }, 3000)
+                    let newName = prompt('Введите новое название цветка', flower);
+                    if (newName !== null && newName.trim() !== '') {
+                        this.flowers[id] = 'сохранение...';
+                        setTimeout(() => {
+                            this.flowers[id] = null;
+                            setTimeout(() => {
+                                this.flowers[id] = newName.trim();
+                            }, 3000);
+                        }, 100);
+                    }
+                },
+                remove(id) {
+                    if (confirm('Удалить цветок?')) {
+                        this.flowers.splice(id, 1);
+                    }
+                },
+                addFlower() {
+                    let name = prompt('Введите название нового цветка');
+                    if (name !== null && name.trim() !== '') {
+                        this.flowers.push(name.trim());
+                    }
                 },
                 sum() {
                     this.result = this.a + this.b;
-                },
+                }
             }
         }).mount('#app');
     </script>
